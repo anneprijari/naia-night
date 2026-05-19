@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abschlussaufgabe – N4/A Night #01</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #12062a;
+    --card: #1e0f3a;
+    --purple: #a259ff;
+    --pink: #ff3399;
+    --yellow: #c8ff00;
+    --text: #ffffff;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  h1 em {
+    color: var(--purple);
+    font-style: italic;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+  }
+  .label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .label.purple { color: var(--purple); }
+  .prompt-text {
+    font-family: var(--mono);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e8e0f5;
+  }
+  .prompt-text .placeholder {
+    color: var(--purple);
+    font-style: italic;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    padding: 1.1rem 2rem;
+    background: var(--pink);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
+  }
+  .copy-btn:hover { background: #e6007a; }
+  .copy-btn:active { transform: scale(0.98); }
+  .copy-btn.copied { background: #22c55e; }
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+  }
+  .info-card {
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: #5b21b6;
+  }
+  .info-card.bright { background: #c026d3; }
+  .info-card .num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--yellow);
+    margin-bottom: 0.5rem;
+  }
+  .info-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #fff;
+  }
+  .info-card p {
+    font-size: 0.85rem;
+    color: #e9d5ff;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="badge">N4/A · Night #01</div>
+<h1>Abschlussaufgabe <em>Dein Wochenplan.</em></h1>
+<div class="card" style="font-size:0.85rem;color:#a78bfa;font-style:italic;padding:0.75rem 1.5rem;margin-bottom:0.5rem;">Thema frei wählen — Ernährung, Fitness, Lernen, Reise, ....</div><div class="card"><div class="label">Prompt</div><div class="prompt-text" id="promptText">Ich möchte in den nächsten 4 Wochen konkret etwas verändern.
+
+Das Thema: <span class="placeholder">[Ernährung / Fitness / Lernen / Reise / eigenes Thema]</span>
+Mein Ziel dabei: <span class="placeholder">[in einem Satz]</span>
+Mein größtes Hindernis: <span class="placeholder">[ehrlich]</span>
+
+Erstelle mir einen realistischen Wochenplan mit kleinen, sofort umsetzbaren Schritten. Kein Perfektionismus.</div></div>
+<button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Prompt kopieren</button>
+<script>
+function copyPrompt() {
+  const el = document.getElementById('promptText');
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Kopiert!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Prompt kopieren'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body></html>
