@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abschlussaufgabe Teil 1 – NaiA Night</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #12062a;
+    --card: #1e0f3a;
+    --purple: #a259ff;
+    --pink: #ff3399;
+    --yellow: #c8ff00;
+    --text: #ffffff;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+  h1 em {
+    color: var(--purple);
+    font-style: italic;
+  }
+  .subline {
+    font-size: 1rem;
+    font-style: italic;
+    color: #cbb8ee;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+  .hint {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 1.5rem;
+  }
+  .label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--pink);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .prompt-text {
+    font-family: var(--mono);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e8e0f5;
+  }
+  .prompt-text .placeholder {
+    color: var(--purple);
+    font-style: italic;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    padding: 1.1rem 2rem;
+    background: var(--pink);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
+  }
+  .copy-btn:hover { background: #e6007a; }
+  .copy-btn:active { transform: scale(0.98); }
+  .copy-btn.copied { background: #22c55e; }
+</style>
+</head>
+<body>
+<div class="badge">NaiA · Night</div>
+<h1>Abschlussaufgabe <em>Eine Nachricht.</em></h1>
+<div class="subline">... an einen besonderen Menschen schreiben.</div>
+<div class="hint">Bitte einen neuen Chat benutzen</div>
+<div class="card">
+  <div class="label">Prompt · Teil 1</div>
+  <div class="prompt-text" id="promptText">Ich möchte jemandem, der mir wichtig ist, eine kleine Nachricht schicken.<br>
+Die Person: <span class="placeholder">[z.B. meine beste Freundin / meine Mutter]</span><br>
+Der Anlass: <span class="placeholder">[z.B. kein besonderer / sie hat gerade einen schwierigen Monat / wir fahren bald zusammen weg]</span><br>
+Ton: <span class="placeholder">[z.B. warm und witzig / herzlich / kurz und direkt]</span><br>
+Schreib mir eine kurze Nachricht, die ich so wirklich abschicken könnte.</div>
+</div>
+<button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Prompt kopieren</button>
+<script>
+function copyPrompt() {
+  const el = document.getElementById('promptText');
+  navigator.clipboard.writeText(el.innerText).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Kopiert!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Prompt kopieren'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body></html>
